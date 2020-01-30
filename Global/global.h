@@ -26,6 +26,7 @@ private:
         double max_miles_from_pick_up_to_drop_off_without_tax;
         double dollars_for_one_mile;
         int start_searching_for_other_shippers_every_specified_ms;
+        double small_item_price;
         double large_item_price;
         double items_discount;
     };
