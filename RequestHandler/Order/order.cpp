@@ -2082,17 +2082,20 @@ Order::Order_Price Order::checkItemsAndCalcOrderPrice(const QJsonArray &array_it
             }
 
             if(small_item_count > 0)
-            {
                 order_price.order_price_without_tax += 20.0;
-            }
 
-            if(large_item_count > 0)
-            {
-                // 40 - 1 // 40 = 40.0 -> // 50 = 50.0
-                // 80 - 2 // 50 = 40.0 -> // 70 = 50.0
-                // 120 - 3 //90 = 40.0 -> // 90 = 50.0
-
-                order_price.order_price_without_tax += ((large_item_count * 40.0) - 30.0);
+            ///////////////////////////////////////
+            // 40 - 1 // 40 = 40.0 -> // 50 = 50.0
+            // 80 - 2 // 50 = 40.0 -> // 70 = 50.0
+            // 120 - 3 //90 = 40.0 -> // 90 = 50.0
+            ///////////////////////////////////////
+            if(large_item_count >= 1) {
+                if (large_item_count > 1) {
+                    order_price.order_price_without_tax +=
+                        ((large_item_count * Global::getOrderSettings().large_item_price) - Global::getOrderSettings().items_discount);
+                }
+                else
+                    order_price.order_price_without_tax = Global::getOrderSettings().large_item_price;
             }
 
             order_price.order_price_without_tax = Global::roundDoubleToTwoPointsDecimal(order_price.order_price_without_tax);
