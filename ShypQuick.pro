@@ -89,3 +89,6 @@ HEADERS += \
     validator.h \
     worker.h \
     url_list.h
+
+DISTFILES += \
+    ServerConfigs.conf
