@@ -53,6 +53,8 @@ QSet<QString> getNeededParameters()
       QStringLiteral("max_miles_from_pick_up_to_drop_off_without_tax"),
       QStringLiteral("dollars_for_one_mile"),
       QStringLiteral("start_searching_for_other_shippers_every_specified_seconds"),
+      QStringLiteral("large_item_price"),
+      QStringLiteral("items_discount"),
 
       QStringLiteral("email_contact_us"),
 
@@ -321,6 +323,13 @@ void setOrderSettings(const QMap<QString, QString> &map_received_config)
 
     const int start_searching_for_other_shippers_every_specified_ms =
     getParameterWhichIsNumber<int>("start_searching_for_other_shippers_every_specified_seconds", map_received_config, Check_Number::Positive_Number) * 1000;
+
+    const double large_item_price =
+    getParameterWhichIsNumber<double>("large_item_price", map_received_config, Check_Number::Unsigned);
+
+    const double items_discount =
+    getParameterWhichIsNumber<double>("items_discount", map_received_config, Check_Number::Unsigned);
+
 
     Setter::setOrderSettings(
     {application_tax,
