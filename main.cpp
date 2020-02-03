@@ -161,10 +161,8 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    // To ignore SIGPIPE, when we write to closed socket
     signal(SIGPIPE, SIG_IGN);
 
-    //
     Setter::setPrimaryPath();
 
     qDebug() << Global::getPrimaryPath();
@@ -177,12 +175,10 @@ int main(int argc, char *argv[])
     checkThatWeGetAllParameters(set_need_config, map_received_config);
 
 
-    //
     Setter::setServerUrl(map_received_config.value("server_url"));
 
     Setter::setPictureDirPath(map_received_config.value("picture_dir_path"));
 
-    //
     qDebug() << "Set DataBaseConnector configs...\r\n";
 
     DataBaseConnector::setConfigs(
